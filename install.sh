@@ -3,6 +3,10 @@
 
 set -e  # Прекратить выполнение при ошибках
 
+# Подключаем проверку root и требуем права сразу
+source "./utils/check_root.sh"
+ensure_root "$@"
+
 # Пути к файлам с функциями
 CHECK_PACKAGES_SCRIPT="./utils/check_packages.sh"
 INSTALL_PACKAGES_SCRIPT="./utils/install_packages.sh"
