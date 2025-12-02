@@ -11,4 +11,4 @@ ensure_root() {
             exit 1
         fi
     fi
-}ц
+}
