@@ -29,10 +29,17 @@ if [[ ! -f "$ADD_USER_SCRIPT" ]]; then
     exit 1
 fi
 
+if [[ ! -f "$AUTO_LOGIN_SCRIPT" ]]; then
+    echo "Ошибка: Файл $AUTO_LOGIN_SCRIPT не найден!"
+    exit 1
+fi
+
 # Импортируем функции
 source "$CHECK_PACKAGES_SCRIPT"
 source "$INSTALL_PACKAGES_SCRIPT"
 source "$ADD_USER_SCRIPT"
+source "$AUTO_LOGIN_SCRIPT"
+
 # Основная логика
 echo "======================================"
 echo "   Скрипт установки необходимых пакетов"
