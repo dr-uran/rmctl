@@ -9,7 +9,7 @@ ensure_root "$@"
 
 # Пути к файлам с функциями
 CHECK_PACKAGES_SCRIPT="./utils/check_packages.sh"
-INSTALL_PACKAGES_SCRIPT="./utils/install_packages.sh"
+INSTALL_PACKAGES_SCRIPT="./utils/auto_install_missing_packages.sh"
 ADD_USER_SCRIPT="./utils/add_user.sh"
 AUTO_LOGIN_SCRIPT="./utils/auto_login.sh"
 
