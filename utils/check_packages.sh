@@ -11,10 +11,10 @@ check_packages() {
     local packages=(
         "xl2tpd"
         "strongswan"
-        "ppp"
+        "network-manager-l2tp"
+        "network-manager-l2tp-gnome"
         "remmina"
         "remmina-plugin-rdp"
-        "remmina-plugin-vnc"
     )
 
     for pkg in "${packages[@]}"; do
