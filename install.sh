@@ -10,6 +10,8 @@ ensure_root "$@"
 # Пути к файлам с функциями
 CHECK_PACKAGES_SCRIPT="./utils/check_packages.sh"
 INSTALL_PACKAGES_SCRIPT="./utils/install_packages.sh"
+ADD_USER_SCRIPT="./utils/add_user.sh"
+AUTO_LOGIN_SCRIPT="./utils/auto_login.sh"
 
 # Проверяем существование файлов с функциями
 if [[ ! -f "$CHECK_PACKAGES_SCRIPT" ]]; then
@@ -22,10 +24,15 @@ if [[ ! -f "$INSTALL_PACKAGES_SCRIPT" ]]; then
     exit 1
 fi
 
+if [[ ! -f "$ADD_USER_SCRIPT" ]]; then
+    echo "Ошибка: Файл $ADD_USER_SCRIPT не найден!"
+    exit 1
+fi
+
 # Импортируем функции
 source "$CHECK_PACKAGES_SCRIPT"
 source "$INSTALL_PACKAGES_SCRIPT"
-
+source "$ADD_USER_SCRIPT"
 # Основная логика
 echo "======================================"
 echo "   Скрипт установки необходимых пакетов"
