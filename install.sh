@@ -1,31 +1,20 @@
 #!/bin/bash
 # Основной скрипт установки
 
-set -e  # Прекратить выполнение при ошибках
-
-# Подключаем проверку root и требуем права сразу
-source "./utils/check_root.sh"
-ensure_root "$@"
+# Прекратить выполнение при ошибках
+set -e  
 
 # Пути к файлам с функциями
-CHECK_PACKAGES_SCRIPT="./utils/check_packages.sh"
-INSTALL_PACKAGES_SCRIPT="./utils/auto_install_missing_packages.sh"
-ADD_USER_SCRIPT="./utils/add_user.sh"
+ADD_L2TP_SCRIPT="./utils/add_l2tp.sh"
 AUTO_LOGIN_SCRIPT="./utils/auto_login.sh"
+CHECK_PACKAGES_SCRIPT="./utils/check_packages.sh"
+CHECK_ROOT_SCRIPT="./utils/check_root.sh"
+INSTALL_PACKAGES_SCRIPT="./utils/install_packages.sh"
+USERADD_SCRIPT="./utils/useradd.sh"
 
 # Проверяем существование файлов с функциями
-if [[ ! -f "$CHECK_PACKAGES_SCRIPT" ]]; then
-    echo "Ошибка: Файл $CHECK_PACKAGES_SCRIPT не найден!"
-    exit 1
-fi
-
-if [[ ! -f "$INSTALL_PACKAGES_SCRIPT" ]]; then
-    echo "Ошибка: Файл $INSTALL_PACKAGES_SCRIPT не найден!"
-    exit 1
-fi
-
-if [[ ! -f "$ADD_USER_SCRIPT" ]]; then
-    echo "Ошибка: Файл $ADD_USER_SCRIPT не найден!"
+if [[ ! -f "$ADD_L2TP_SCRIPT" ]]; then
+    echo "Ошибка: Файл $ADD_L2TP_SCRIPT не найден!"
     exit 1
 fi
 
@@ -34,11 +23,36 @@ if [[ ! -f "$AUTO_LOGIN_SCRIPT" ]]; then
     exit 1
 fi
 
+if [[ ! -f "$CHECK_PACKAGES_SCRIPT" ]]; then
+    echo "Ошибка: Файл $CHECK_PACKAGES_SCRIPT не найден!"
+    exit 1
+fi
+
+if [[ ! -f "$CHECK_ROOT_SCRIPT" ]]; then
+    echo "Ошибка: Файл $CHECK_ROOT_SCRIPT не найден!"
+    exit 1
+fi
+
+if [[ ! -f "$INSTALL_PACKAGES_SCRIPT" ]]; then
+    echo "Ошибка: Файл $INSTALL_PACKAGES_SCRIPT не найден!"
+    exit 1
+fi
+
+if [[ ! -f "$USERADD_SCRIPT" ]]; then
+    echo "Ошибка: Файл $USERADD_SCRIPT не найден!"
+    exit 1
+fi
+
 # Импортируем функции
-source "$CHECK_PACKAGES_SCRIPT"
-source "$INSTALL_PACKAGES_SCRIPT"
-source "$ADD_USER_SCRIPT"
+source "$ADD_L2TP_SCRIPT"
 source "$AUTO_LOGIN_SCRIPT"
+source "$CHECK_PACKAGES_SCRIPT"
+source "$CHECK_ROOT_SCRIPT"
+source "$INSTALL_PACKAGES_SCRIPT"
+source "$USERADD_SCRIPT"
+
+# Проверяем права root
+ensure_root "$@"
 
 # Основная логика
 echo "======================================"
