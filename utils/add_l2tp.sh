@@ -1,7 +1,7 @@
 #!/bin/bash
 # Функция добавления L2TP VPN соединения
 add_l2tp() {
-    nmcli connection add \
+    nmcli --wait 10 connection add \
     con-name "Goreltex-Master" \
     type vpn \
     vpn-type l2tp \
@@ -10,7 +10,7 @@ add_l2tp() {
     "gateway=vpn.company.com,ipsec-enabled=yes,ipsec-psk=SHARED_SECRET_KEY,user=myusername,password-flags=0" \
     vpn.secrets "password=mypassword123" \
     ipv4.method auto \
-    ipv4.dns-search "company.local office.local intranet.corp" \
+    ipv4.dns-search "corp.company.ru" \
     ipv4.routes "10.0.1.0/24 0.0.0.0,192.168.10.0/24 0.0.0.0,172.16.100.0/22 0.0.0.0" \
     ipv4.ignore-auto-dns true \
     ipv4.dns-priority 50 \
