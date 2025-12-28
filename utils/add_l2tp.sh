@@ -1,3 +1,6 @@
+#!/bin/bash
+# Функция добавления L2TP VPN соединения
+add_l2tp() {
     nmcli connection add \
     con-name "Goreltex-Master" \
     type vpn \
@@ -12,3 +15,4 @@
     ipv4.ignore-auto-dns true \
     ipv4.dns-priority 50 \
     ipv6.method disabled
+}  

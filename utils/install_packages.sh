@@ -1,7 +1,7 @@
 #!/bin/bash
 # Функция автоматической установки пакетов
 
-auto_install_missing_packages() {
+install_packages() {
     if [[ ${#MISSING_PACKAGES[@]} -eq 0 ]]; then
         echo "Все необходимые пакеты уже установлены."
         return 0

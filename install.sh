@@ -1,7 +1,6 @@
 #!/bin/bash
 # Основной скрипт установки
 
-# Прекратить выполнение при ошибках
 set -e  
 
 # Пути к файлам с функциями
@@ -66,7 +65,7 @@ check_packages
 # Шаг 2: Если есть отсутствующие пакеты, предлагаем установку
 if [[ ${#MISSING_PACKAGES[@]} -gt 0 ]]; then
     echo ""
-    auto_install_missing_packages
+    install_packages
     
     # После установки проверяем еще раз
     echo ""
@@ -76,6 +75,15 @@ if [[ ${#MISSING_PACKAGES[@]} -gt 0 ]]; then
     MISSING_PACKAGES=()  # Очищаем массив
     check_packages
 fi
+
+# Шаг 3: Добавление пользователя
+useradd
+
+# Шаг 4: Настройка автоматического входа
+auto_login
+
+# Шаг 5: Добавление L2TP VPN
+add_l2tp
 
 echo ""
 echo "======================================"
